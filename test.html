@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="renderer" content="webkit" />
+  <title>药品中标信息查询 - 药智数据</title>
+  <meta name="Keywords" content="中标、价格、药品中标">
+  <meta name="Description" content="药品中标价格数据库是全国各地区医院的药品采购价格。">
+  <link rel="stylesheet" href="//static.yaozh.com/css/app.css?_v=1.5.17">
+  <link rel="stylesheet" href="/Public/css/db.css?_v=1.5.17">
+  <script>
+    document.domain = location.host.replace(/(\w|-)+\./,'');
+    var config = {
+      baseUrl : '//static.yaozh.com/js',
+      deps : ['/Public/js/pages/public.js'],
+      version : '1.5.17'
+    }
+    var user = {
+      name : "gjpharm",
+      isVip : "1",
+      isued : "",
+      VipMessage : "0",
+      VipEndTime : "2017-05-05"
+    }
+          </script>
+  <script src="//static.yaozh.com/js/app.js?_v=1.5.17"></script>
+  <script src="/Public/js/config.js?_v=1.5.17"></script>
+  <!--[if lt IE 9]><script src="http://static.yaozh.com/js/special/html5shiv.js?_v=1.5.17"></script><![endif]-->
+  <script>require(['db.pages.list'],function(page){page.yaopinzhongbiao();});</script>
+</head>
+<body class="admin">
+      <div class="ui-topbar">
+      <div class="wrapper clearfix">
+        <div class="fl">
+          <a href="#" class="item nav-toggle"><i class="fa"></i></a>
+          <a href="//www.yaozh.com" class="item cl-blue">药智网</a>
+          <a href="//www.yaozh.com/zhihui" class="item cl-blue">药智汇</a>
+          <a href="//s.yaozh.com" class="item cl-blue">药智通</a>
+          <a href="//news.yaozh.com" class="item cl-blue">药智新闻</a>
+          <a href="//star.yaozh.com" class="item cl-blue">药智星</a>
+          <a href="//club.yaozh.com/" class="item cl-blue">俱乐部</a>
+          <a href="//edu.yaozh.com" class="item cl-blue">大讲堂</a>
+          <a href="//bbs.yaozh.com" class="item cl-blue">药智论坛</a>
+          <a href="//www.35yao.com/" class="item cl-blue">在线会展</a>
+          <a href="//top.yaozh.com/" class="item cl-blue">排行榜</a>
+          <span class="item sub-box">
+            <a class="name" href="/other/custom">客户服务 <i class="fa"></i></a>
+            <div class="subnav">
+              <ul>
+                <li><a href="/other/custom" target="_blank">服务中心</a></li>
+                <li><a href="//help.yaozh.com/list108/" target="_blank">在线帮助</a></li>
+				<li><a href="/other/faq" target="_blank">常见问题</a></li>
+              </ul>
+            </div>
+          </span>
+          <span class="item sub-box app">
+            <a href="/app" target="_blank" title="点击了解更多关于药智数据APP"><span class="app-icon"><i class="fa"></i> <span>药智数据APP</span></span></a>
+            <div class="subnav">
+              <div class="box">
+                <a href="https://itunes.apple.com/us/app/yao-zhi-shu-ju/id1025304074" class="btn btn-sm ios btn-gray" target="_blank">
+                  <i class="fa"></i>
+                  <span>iPhone版下载</span>
+                </a>
+                <a href="//static.yaozh.com/yaozh_latest.apk" class="btn btn-sm android mt10 btn-green" target="_blank">
+                  <i class="fa"></i>
+                  <span>android版下载</span>
+                </a>
+                <div class="tc mt10">
+                  <img style="width:100%;" src="/Public/images/download_qrcode.png?_v=1.5.17" alt="" class="download_qrcode">
+                </div>
+              </div>
+            </div>
+          </span>
+          <!-- <a href="/app" style="position: absolute;display: inline-block;width:91px;height: 18px;top: 5px;left: 600px;" title="点击进入app介绍页面"></a>-->
+        </div>
+        <div class="fr">
+          <!-- <span class="item line">
+            <a href="//olddb.yaozh.com">返回旧版</a>
+          </span> -->
+                      <span class="item user">
+              <a href="/user" target="_blank"><img src="/Public/images/no_head.png" alt="头像">gjpharm</a>
+              <i class="vip vip5" title="营销特级"></i>            </span>
+			                                    <span class="item line">
+              <a href="//www.yaozh.com/login/logout">退出</a>
+            </span>
+                    
+
+        </div>
+      </div>
+        
+    </div>    <div class="header-bar" data-widget="sticky" data-wrapperclass="header-bar-wrapper">
+      <form class="wrapper" action="/Search">
+        <a href="/" class="logo" title="药智数据"></a>
+        <div class="search-box">
+          <select class="search-type-select ignore-focus" name="typeid" data-widget="dropdownSelect">
+            <option selected="selected" class="item" value="8446" data-fctype="8446" data-placeholder="请输入中（英）文名称或拼音首字母  或  完整受理号/批准文号" data-params='{"w":"8446"}'>药品</option><option  class="item" value="8452" data-fctype="8452" data-placeholder="请输入中药材名称或拼音首字母" data-params='{"w":"8452"}'>中药材</option><option  class="item" value="8455" data-fctype="8455" data-placeholder="请输入医疗器械名称或拼音首字母  或   完整受理号/批准文号" data-params='{"w":"8455"}'>医疗器械</option><option  class="item" value="8456" data-fctype="8456" data-placeholder="请输入保健食品名称或拼音首字母  或  完整受理号/批准文" data-params='{"w":"8456"}'>食品</option><option  class="item" value="8460" data-fctype="8460" data-placeholder="请输入化妆品名称或拼音首字母  或  完整受理号/批准文号" data-params='{"w":"8460"}'>化妆品</option>            <option  class="item" value="9" data-fctype="9" data-placeholder="请输入标准名称" data-params='{"w":"9"}'>标准</option>
+            <option  class="item" value="-1" data-fctype="-1" data-placeholder="请输入企业名称" data-params='{"w":"-1"}'>企业</option>
+			<option  class="item" value="-2" data-fctype="-2" data-placeholder="请输入中（英）文疾病名称" data-params='{"w":"-2"}'>疾病</option>
+          </select>
+          <input data-widget="clearInput"  class="search ignore-focus" name="content" type="text" placeholder="请输入名称或拼音首字母" >
+          <a href="javascript:;" class="search-btn">搜索</a>
+        </div>
+        <a class="link-vip" href="/vip" target="_blank"><img src="/Public/images/dh.gif" alt=""></a>
+      </form>
+    </div>
+<div class="ui-topnav-wrapper">
+
+  <ul class="ui-topnav other-nav">
+    <li class="item">
+          <a class="name arrow" href="javascript:;" title="">药品研发</a>
+          <ul class="subnav">
+            <li><a href="/zhuce"  title="药品注册与受理">药品注册与受理数据库</a></li><li><a href="/report"  title="">全球药品研发数据库(测试版)</a></li><li><a href="/xinyao"  title="">中国新药批准信息(1978-2003)</a></li><li><a href="/zhuangrang"  title="">药品转让信息数据库</a></li><li><a href="/linchuangshiyan"  title="">中国临床试验数据库</a></li><li><a href="/clinicaltrials"  title="全球临床试验数据库">全球临床试验数据库</a></li><li><a href="/usan"  title="">美国在研新药数据库</a></li><li><a href="/nce"  title="">药物NCE原始专利</a></li><li><a href="/zhijichufang"  title="药物制剂处方-药智数据">药物制剂处方数据库</a></li><li><a href="/whodi"  title="WHO药物信息">WHO药物信息</a></li><li><a href="/animalmodel"  title="">动物模型数据库</a></li><li><a href="/targets"  title="">药物分子靶点数据库</a></li><li><a href="/inn"  title="">多语种通用名数据库</a></li>          </ul>
+        </li><li class="item">
+          <a class="name arrow" href="javascript:;" title="">生产检验</a>
+          <ul class="subnav">
+            <li><a href="/biaozhun"  title="">中国药品标准</a></li><li><a href="/fulu" 0 title="">中国药典附录</a></li><li><a href="/foreign" 0 title="">国外药典在线</a></li><li><a href="/ir"  title="">红外光谱图</a></li><li><a href="/sepu"  title="">色谱图数据库</a></li><li><a href="/medbagstand" 0 title="">药包材标准</a></li><li><a href="/pizhunyaocaibao" 0 title="">批准的药包材</a></li><li><a href="/quanqiuqiye"  title="全球药品生产企业">全球药品生产企业</a></li><li><a href="/shengchanqiye"  title="">中国药品生产企业</a></li><li><a href="/gmp"  title="">GMP认证查询</a></li><li><a href="/bcs"  title="">BCS分类信息查询</a></li><li><a href="/dissolution"  title="">FDA溶出度方法库</a></li><li><a href="/jporangebook"  title="">日本橙皮书数据库</a></li><li><a href="/orangebook"  title="中国橙皮书">中国橙皮书数据库</a></li><li><a href="/ypzl"  title="不合格公告">药品质量不合格公告</a></li>          </ul>
+        </li><li class="item">
+          <a class="name arrow" href="javascript:;" title="">合理用药</a>
+          <ul class="subnav">
+            <li><a href="/instruct" 0 title="">药品说明书</a></li><li><a href="/unlabeleduse" 0 title="">超说明书用药数据库</a></li><li><a href="/fdalabel"  title="">美国FDA药品说明书</a></li><li><a href="/jp_shuomingshu" 0 title="">日本药品说明书</a></li><li><a href="/martindale"  title="">马丁代尔大药典</a></li><li><a href="/yibao"  title="">医保目录查询</a></li><li><a href="/basicdir"  title="">基本药物目录查询</a></li><li><a href="/goods"  title="">药品商品名查询</a></li><li><a href="/atc"  title="">药物ATC编码查询系统</a></li><li><a href="/cpg"  title="">临床诊疗指南数据库</a></li><li><a href="/icd"  title="">疾病分类与代码</a></li><li><a href="/pathway"  title="">临床路径数据库</a></li><li><a href="/interaction"  title="">药物相互作用数据库</a></li><li><a href="/clinicaldrug" target="_blank" title="">临床合理用药数据库</a></li>          </ul>
+        </li><li class="item">
+          <a class="name arrow" href="javascript:;" title="">市场信息</a>
+          <ul class="subnav">
+            <li><a href="/pqf"  title="">生物制品销售数据库</a></li><li><a href="/screening"  title="上市药品筛选系统">上市药品筛选系统</a></li><li><a href="/policies"  title="">政策法规数据库</a></li><li><a href="/pijian"  title="">国产药品数据库</a></li><li><a href="/jinkou"  title="">进口药品数据库</a></li><li><a href="/jp"  title="">日本药品上市信息</a></li><li><a href="/epyp"  title="">欧盟药品上市信息</a></li><li><a href="/fdaproducts"  title="">美国FDA橙皮书数据库</a></li><li><a href="/fdadrug"  title="">美国FDA药品数据库</a></li><li><a href="/ndc"  title="">美国国家药品代码目录</a></li><li><a href="/dmf"  title="">美国DMF注册数据库</a></li><li><a href="/USAMarket200"  title="美国药品销售数据">美国药品销售数据TOP200</a></li><li><a href="/yaopinzhongbiao"  title="">药品中标信息查询</a></li><li><a href="/pifajiage"  title="">太和药品行情查询</a></li><li><a href="/dijia"  title="">低价药目录查询</a></li><li><a href="/yaopinjiage"  title="">药品最高零售价</a></li><li><a href="/agents"  title="代理商数据库">代理商数据库</a></li><li><a href="/drugad"  title="药品广告数据库">药品广告数据库</a></li>          </ul>
+        </li><li class="item">
+          <a class="name arrow" href="javascript:;" title="">CHEMPHARM</a>
+          <ul class="subnav">
+            <li><a href="/bpc"  title="">药物词典</a></li><li><a href="/jiegou" 0 title="">百万化合物信息库</a></li><li><a href="/biaozhundb"  title="">杂质-对照品数据库</a></li><li><a href="/yfpw"  title="">药辅批文数据库</a></li><li><a href="/fdafuliao"  title="">FDA批准辅料数据库</a></li><li><a href="/yaoyongfuliao"  title="">药用辅料数据库</a></li><li><a href="/fzk"  title="药物合成库">药物合成数据库</a></li><li><a href="/hcff"  title="合成方法">有机合成方法数据库</a></li><li><a href="/onrc"  title="">有机合成经典反应数据库</a></li><li><a href="/tichun"  title="">化合物提纯方法数据库</a></li><li><a href="/unii"  title="">FDA物质编码数据库</a></li><li><a href="/hgbz"  title="">化工标准数据库</a></li>          </ul>
+        </li><li class="item">
+          <a class="name arrow" href="javascript:;" title="">中药材</a>
+          <ul class="subnav">
+            <li><a href="/yaocai_bz"  title="">药材标准</a></li><li><a href="/paozhi"  title="炮制规范">中药饮片炮制规范</a></li><li><a href="/zhongyaocai"  title="">中药材基本信息库</a></li><li><a href="/zhongyaopinzhong"  title="">中药保护品种</a></li><li><a href="/tupu"  title="">中药材图谱</a></li><li><a href="/yaocai"  title="">药材辞典与现代化研究</a></li><li><a href="/sepu"  title="">色谱图数据库</a></li><li><a href="/fangji"  title="">经典中药方剂</a></li><li><a href="/chufang"  title="">中成药处方数据库</a></li><li><a href="/eherb"  title="">EMA中草药评价报告</a></li><li><a href="/zhunziblishi"  title="">保健药品历史数据</a></li>          </ul>
+        </li><li class="item">
+          <a class="name arrow" href="javascript:;" title="">医疗器械</a>
+          <ul class="subnav">
+            <li><a href="/qxzhuce"  title="器械注册审评">器械注册审评数据库</a></li><li><a href="/qixiebiaozhun"  title="">医疗器械标准</a></li><li><a href="/jixie"  title="">国产器械</a></li><li><a href="/jinkoujixie"  title="">进口器械</a></li><li><a href="/fenleimulu"  title="">医疗器械分类目录</a></li><li><a href="/jixieshengchanqiye"  title="">医疗器械生产企业</a></li><li><a href="/yysb"  title="医院设备">医院设备/器械中标库</a></li><li><a href="/yyhc"  title="">医用耗材中标数据库</a></li><li><a href="/qixiead"  title="医疗器械广告数据库">医疗器械广告数据库</a></li><li><a href="/clinicaltrials"  title="">全球器械临床试验库</a></li><li><a href="/policies"  title="">医疗器械法规数据库</a></li>          </ul>
+        </li><li class="item">
+          <a class="name arrow" href="javascript:;" title="">食品</a>
+          <ul class="subnav">
+            <li><a href="/bjsp"  title="">保健食品处方数据库</a></li><li><a href="/baojian"  title="">国产保健食品</a></li><li><a href="/jinkoubaojian"  title="">进口保健食品</a></li><li><a href="/spbz"  title="食品标准">食品标准数据库</a></li><li><a href="/baojianad"  title="保健食品广告数据库">保健食品广告数据库</a></li><li><a href="/foreign"  title="">膳食补充剂标准</a></li><li><a href="/spfd"  title="">食品化学法典</a></li>          </ul>
+        </li><li class="item">
+          <a class="name arrow" href="javascript:;" title="">化妆品</a>
+          <ul class="subnav">
+            <li><a href="/huazhuang"  title="">国产化妆品</a></li><li><a href="/jinkouhuazhuang"  title="">进口化妆品</a></li><li><a href="/huazhuang_yl"  title="">化妆品原料</a></li>          </ul>
+        </li><li class="item">
+          <a class="name arrow" href="javascript:;" title="">专题</a>
+          <ul class="subnav">
+            <li><a href="/zhuanti/2.html"  title="">仿制药一致性评价</a></li><li><a href="/zhuanti/8.html"  title="">生物药数据库专题</a></li><li><a href="/zhuanti/zhuanti_20160421" target="_blank" title="">医疗器械数据库</a></li><li><a href="/zhuanti/9.html"  title="">标准专题</a></li><li><a href="/zhuanti/12.html"  title="">兽药专题</a></li><li><a href="https://star.yaozh.com"  title="">化工数据库</a></li>          </ul>
+        </li>    <li class="padding">
+      <a  href="/other/vip" title="药智数据VIP入口">VIP</a>
+    </li>
+    <li class="padding">
+      <a href="/search/map" title="数据库导航_网站地图" class="map_i">数据库导航</a>
+    </li>
+    <li class="ui-dropdown pull-right form database-list">
+      <input class="form-control ignore-focus" type="text" data-widget="dbDatabaseMap,dropdown,moveFocus" data-view="#database-map" data-collection="#database-map a" placeholder="数据库名称(拼音或首字母)">
+      <div class="ui-dropdown-menu ui-dropdown-impede" id="database-map"></div>
+    </li>
+    <li class="padding">
+      <a class="tools" href="/other/tool" title="药学辅助工具" data-widget="linkDialog" data-width="820" data-height="790"><i class="fa fs16"></i></a>
+    </li>
+  </ul>
+</div>
+<div class="ui-crumb offset-top">
+  <span>当前位置：</span>
+  <a href="/">首页</a>
+  <em>&gt;</em>
+    <span><a class="cl-blue" href="/yaopinzhongbiao">药品中标信息查询</a></span>
+    <span class="info">
+    <a class="item with-text" title="建议反馈" data-action="feedback" href="/user/feedback/add" data-widget="linkDialog" data-width="700" data-height="560">
+      <i class="fa"></i>
+      <span>反馈纠错</span>
+    </a>
+        <a class="ml5" data-action="collect" href="/user/fav/db?id=46">
+      <i class="fa"></i>
+      <span>收藏</span>
+    </a>
+        <a class="ml5" target="_blank" href="http://help.yaozh.com/help96.html">
+      <i class="fa"></i>
+      <span>帮助中心</span>
+    </a>
+      </span>
+</div>
+
+  <div class="main">
+    <!-- 表单 -->
+    <div class="ui-box ui-box-gray">
+      <div class="form align-right form-style-2">
+        <form class="form-double-groups" action="/yaopinzhongbiao"> 
+          <!--  -->
+                      
+                          
+              <div class="form-group" data-norule="">
+                <label class="form-label" title="药品名称">药品名称</label>
+                <div class="form-box">
+                  <input class="form-control" placeholder="" type='text' name="name" value="多西他赛" data-widget="autoComplete" data-remote="/ajax/inputts" data-field="q" data-params='{"i":"be_yaopinzhongbiao__me_name"}'/>
+                                      										<label class="checkbox"><input type='checkbox'  value="1" name='jc_me_name' />精确查询</label>                </div>
+              </div>              
+              <div class="form-group" data-norule="">
+                <label class="form-label" title="生产企业">生产企业</label>
+                <div class="form-box">
+                  <input class="form-control" placeholder="" type='text' name="zb_shengchanqiye" value="恒瑞医药" data-widget="autoComplete" data-remote="/ajax/inputts" data-field="q" data-params='{"i":""}'/>
+                                      										<label class="checkbox"><input type='checkbox'  value="1" name='jc_me_shengchanqiye' />精确查询</label>                </div>
+              </div>              
+              <div class="form-group" data-norule="">
+                <label class="form-label" title="商 品 名">商 品 名</label>
+                <div class="form-box">
+                  <input class="form-control" placeholder="" type='text' name="zb_brandname" value="" data-widget="autoComplete" data-remote="/ajax/inputts" data-field="q" data-params='{"i":""}'/>
+                                      				                </div>
+              </div>              
+              <div class="form-group" data-norule="">
+                <label class="form-label" title="投标企业">投标企业</label>
+                <div class="form-box">
+                  <input class="form-control" placeholder="" type='text' name="zb_bidder" value="" data-widget="autoComplete" data-remote="/ajax/inputts" data-field="q" data-params='{"i":""}'/>
+                                      				                </div>
+              </div>              
+              <div class="form-group" data-norule="">
+                <label class="form-label" title="剂　　型">剂　　型</label>
+                <div class="form-box">
+                  <input class="form-control" placeholder="" type='text' name="jixing" value="" data-widget="autoComplete" data-remote="/ajax/inputts" data-field="q" data-params='{"i":""}'/>
+                                      				                </div>
+              </div>              
+              <div class="form-group" data-norule="">
+                <label class="form-label" title="发布日期">发布日期</label>
+                <div class="form-box">
+                                    <input class="form-control half" type='text' name="zb_approvaldatestr" data-widget="datepicker" value="" />
+                  -
+                  <input class="form-control half" type='text' name="zb_approvaldateend" data-widget="datepicker" value="" />
+          				                </div>
+              </div>              
+              <div class="form-group" data-norule="">
+                <label class="form-label" title="规　　格">规　　格</label>
+                <div class="form-box">
+                  <input class="form-control" placeholder="" type='text' name="guige" value="" data-widget="autoComplete" data-remote="/ajax/inputts" data-field="q" data-params='{"i":""}'/>
+                                      				                </div>
+              </div>              
+              <div class="form-group" data-norule="">
+                <label class="form-label" title="省        份">省        份</label>
+                <div class="form-box">
+                                                                                  <select class="form-control" data-widget="linkSelect" data-defaults="全部" data-names="first" data-list='[{"name":"\u5168\u90e8","sort":0,"val":"\u5168\u90e8"},{"name":"\u5317\u4eac","sort":1,"val":"\u5317\u4eac"},{"name":"\u4e0a\u6d77","sort":2,"val":"\u4e0a\u6d77"},{"name":"\u5929\u6d25","sort":3,"val":"\u5929\u6d25"},{"name":"\u91cd\u5e86","sort":4,"val":"\u91cd\u5e86"},{"name":"\u6cb3\u5317","sort":5,"val":"\u6cb3\u5317"},{"name":"\u5c71\u897f","sort":6,"val":"\u5c71\u897f"},{"name":"\u5185\u8499\u53e4","sort":7,"val":"\u5185\u8499\u53e4"},{"name":"\u9ed1\u9f99\u6c5f","sort":8,"val":"\u9ed1\u9f99\u6c5f"},{"name":"\u5409\u6797","sort":9,"val":"\u5409\u6797"},{"name":"\u8fbd\u5b81","sort":10,"val":"\u8fbd\u5b81"},{"name":"\u9655\u897f","sort":11,"val":"\u9655\u897f"},{"name":"\u7518\u8083","sort":12,"val":"\u7518\u8083"},{"name":"\u9752\u6d77","sort":13,"val":"\u9752\u6d77"},{"name":"\u65b0\u7586","sort":14,"val":"\u65b0\u7586"},{"name":"\u5b81\u590f","sort":15,"val":"\u5b81\u590f"},{"name":"\u5c71\u4e1c","sort":16,"val":"\u5c71\u4e1c"},{"name":"\u6cb3\u5357","sort":17,"val":"\u6cb3\u5357"},{"name":"\u6c5f\u82cf","sort":18,"val":"\u6c5f\u82cf"},{"name":"\u6d59\u6c5f","sort":19,"val":"\u6d59\u6c5f"},{"name":"\u5b89\u5fbd","sort":20,"val":"\u5b89\u5fbd"},{"name":"\u6c5f\u897f","sort":21,"val":"\u6c5f\u897f"},{"name":"\u798f\u5efa","sort":22,"val":"\u798f\u5efa"},{"name":"\u6e56\u5317","sort":24,"val":"\u6e56\u5317"},{"name":"\u6e56\u5357","sort":25,"val":"\u6e56\u5357"},{"name":"\u5e7f\u4e1c","sort":26,"val":"\u5e7f\u4e1c"},{"name":"\u5e7f\u897f","sort":27,"val":"\u5e7f\u897f"},{"name":"\u6d77\u5357","sort":28,"val":"\u6d77\u5357"},{"name":"\u56db\u5ddd","sort":29,"val":"\u56db\u5ddd"},{"name":"\u4e91\u5357","sort":30,"val":"\u4e91\u5357"},{"name":"\u8d35\u5dde","sort":31,"val":"\u8d35\u5dde"},{"name":"\u897f\u85cf","sort":32,"val":"\u897f\u85cf"}]'>
+                      </select>				                </div>
+              </div>              
+              <div class="form-group" data-norule="">
+                <label class="form-label" title="药理分类">药理分类</label>
+                <div class="form-box">
+                                                            <select class="form-control" data-defaults="" data-names="atc" data-widget="dbActCode"></select>
+                    				                </div>
+              </div>            <div class="form-group clear">
+              <label class="form-label"></label>
+              <div class="form-box">
+                <button type="submit" class="btn btn-blue form-control-width">搜索</button>
+				<label class="checkbox"><input type="checkbox" value="1" name="isfilter" >二次筛选</label>              </div>
+            </div>
+          </form>        
+        <div class="form-groups">
+          
+          <div class="ui-tab zhongbiaogonggao" data-widget="tab">
+            <div class="ui-tab-navs">
+              <div class="ui-tab-nav" style="width:180px;">
+                <a class="active" href="javascript:;" data-href="/user/index/notices?q=&cat_id=4">招标动态</a>
+                <a href="javascript:;" data-href="/user/index/notices?q=&cat_id=5">中标公告</a>
+              </div>
+              <div class="ui-tab-side">
+                <a href="/zhaobiaodongtai" target="_blank" class="btn btn-xs btn-blue mr10" style="color:#fff;">招投标动态数据库</a>
+			          <a href="/user/subscribe?type=zhaobiaodongtai" target="_blank"><i class="fa"></i> <span>订阅</span></a>
+              </div>
+            </div>
+            <div class="ui-tab-panels p10">
+              <div class="ui-tab-panel active">
+                <ul>
+                  <li><a target="_blank" href="/zhaobiaodongtai/2599.html" title="转登北京市卫生和计划生育委员会关于北京市公立医疗机构药品阳光采购有关问题的通知">转登北京市卫生和计划生育委员会关于北京市公立医疗机构药品阳光采购有关问题的通知<span class="date">2017.03.23</span></a></li><li><a target="_blank" href="/zhaobiaodongtai/2585.html" title="关于公示吉林省药品集中采购企业和药品信息变更（第三十批）的通知">关于公示吉林省药品集中采购企业和药品信息变更（第三十批）的通知<span class="date">2017.03.23</span></a></li><li><a target="_blank" href="/zhaobiaodongtai/2598.html" title="转登北京市卫生和计划生育委员会关于北京市公立医疗机构药品阳光采购执行时间有关问题的通知">转登北京市卫生和计划生育委员会关于北京市公立医疗机构药品阳光采购执行时间有关问题的通知<span class="date">2017.03.23</span></a></li><li><a target="_blank" href="/zhaobiaodongtai/2511.html" title="关于确定2015年度青海省公立医院藏成药挂网采购产品配送关系的通知">关于确定2015年度青海省公立医院藏成药挂网采购产品配送关系的通知<span class="date">2017.03.22</span></a></li><li><a target="_blank" href="/zhaobiaodongtai/2522.html" title="关于对广东嘉博制药有限公司丙泊酚中/长链脂肪乳注射液20ml:200mg产品分组进行调整的通知">关于对广东嘉博制药有限公司丙泊酚中/长链脂肪乳注射液20ml:200mg产品分组进行调整的通知<span class="date">2017.03.21</span></a></li>                </ul>
+              </div>
+              <div class="ui-tab-panel">
+                <ul>
+                  <li><a target="_blank" href="/zhaobiaodongtai/2542.html" title="关于公布2017年度第二类疫苗入围结果的通知">关于公布2017年度第二类疫苗入围结果的通知<span class="date">2017.03.22</span></a></li><li><a target="_blank" href="/zhaobiaodongtai/2510.html" title="关于公示2015年度青海省公立医院藏成药挂网采购参考价的通知">关于公示2015年度青海省公立医院藏成药挂网采购参考价的通知<span class="date">2017.03.21</span></a></li><li><a target="_blank" href="/zhaobiaodongtai/2563.html" title="关于公示双信封公开招标采购目录拟中标和限价挂网产品及限价的通知">关于公示双信封公开招标采购目录拟中标和限价挂网产品及限价的通知<span class="date">2017.03.21</span></a></li><li><a target="_blank" href="/zhaobiaodongtai/2561.html" title="关于调整聚乙二醇干扰素α-2a注射液中标价的通知">关于调整聚乙二醇干扰素α-2a注射液中标价的通知<span class="date">2017.03.21</span></a></li><li><a target="_blank" href="/zhaobiaodongtai/2562.html" title="关于公布公开招标采购目录产品竞价分组及经济技术标得分的通知">关于公布公开招标采购目录产品竞价分组及经济技术标得分的通知<span class="date">2017.03.21</span></a></li>                </ul>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>    
+    </div>
+    <!-- 筛选 -->
+    
+  <div class="ui-filter offset-top">
+      <div class="rows">
+        <div class="row">
+          <label class="key">已选条件：</label>
+          <div class="values">
+                                  </div>        </div>
+              </div>
+    </div>
+      
+  	
+    <!-- 操作 -->
+    <div class="list-actions">
+      <a   class="btn btn-blue btn-sm mr5" href="/yaopinzhongbiao/jgzs" data-widget="linkDialog">查看中标价格走势图</a><a   class="btn btn-blue btn-sm mr5" href="/yaopinzhongbiao/outdata" >导出勾选数据</a><a  data-widget="dbActions" data-method="public.exdata" data-url="/yaopinzhongbiao/outmoredata" class="btn btn-blue btn-sm mr5" href="javascript:;" >导出excel</a><a   class="btn btn-blue btn-sm mr5" href="http://db.yaozh.com/zhaobiaodongtai" target="_blank">招投标动态</a>      <a class="cl-blue" href="http://www.yaozh.com/shuju/11546.html" target="_blank"><b>50元</b>奖励一条药智网中标信息查询数据库没有的信息</a>
+    </div>
+
+
+    <!-- 表格 -->
+            <form class="offset-top table-list"  data-max="2500" action="/yaopinzhongbiao" id='zhongbiaoform' method='get' target='_blank'>
+    <table class="table table-striped" data-widget="responsivetable" data-offset="73">
+      <thead>
+        <tr>
+          <th><label><input class="toggle-all" type='checkbox'/>全选</label></th>
+                      <th data-priority="" width="">
+                            药品通用名            </th>            <th data-priority="" width="">
+                            商品名            </th>            <th data-priority="" width="">
+                            剂型            </th>            <th data-priority="" width="50,40">
+                            规格            </th>            <th data-priority="1" width="">
+                            包装转换比            </th>            <th data-priority="" width="">
+                            单位            </th>            <th data-priority="" width="51">
+              			  <a href="/index.php/Yaopinzhongbiao/index?dbname=yaopinzhongbiao&name=%E5%A4%9A%E8%A5%BF%E4%BB%96%E8%B5%9B&zb_shengchanqiye=%E6%81%92%E7%91%9E%E5%8C%BB%E8%8D%AF&first=%E5%85%A8%E9%83%A8&pageSize=20&p=5&list_order=me_feiyong" >中标价 (元)                    <i class="fa cl-blue"></i>
+                  </a>
+                          </th>            <th data-priority="" width="">
+                            质量层次            </th>            <th data-priority="" width="">
+                            生产企业            </th>            <th data-priority="" width="">
+                            投标企业            </th>            <th data-priority="" width="41">
+                            中标省份            </th>            <th data-priority="" width="">
+              			  <a href="/index.php/Yaopinzhongbiao/index?dbname=yaopinzhongbiao&name=%E5%A4%9A%E8%A5%BF%E4%BB%96%E8%B5%9B&zb_shengchanqiye=%E6%81%92%E7%91%9E%E5%8C%BB%E8%8D%AF&first=%E5%85%A8%E9%83%A8&pageSize=20&p=5&list_order=me_approvaldate" >发布日期                    <i class="fa cl-blue"></i>
+                  </a>
+                          </th>            <th data-priority="" width="">
+                            备注            </th>            <th data-priority="" width="">
+                            来源文件            </th>            <th data-priority="" width="">
+                            招商产品            </th>        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td><input type='checkbox' name='id[]' value="3341146"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td>艾素</td>                            <td>注射液</td>                            <td>2ml:80mg</td>                            <td>1</td>                            <td>盒</td>                            <td>1056</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>北京</td>                            <td>2013-09-02</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.bjmbc.org.cn/index/index.aspx" target='_blank' rel='nofollow'>2013年《北京市医疗机构药品集中采购手册》</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="3341145"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td>艾素</td>                            <td>注射液</td>                            <td>1.5ml:60mg</td>                            <td>1</td>                            <td>盒</td>                            <td>906</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>北京</td>                            <td>2013-09-02</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.bjmbc.org.cn/index/index.aspx" target='_blank' rel='nofollow'>2013年《北京市医疗机构药品集中采购手册》</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="3341144"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td>艾素</td>                            <td>注射液</td>                            <td>0.5ml:20mg</td>                            <td>1</td>                            <td>盒</td>                            <td>391</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>北京</td>                            <td>2013-09-02</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.bjmbc.org.cn/index/index.aspx" target='_blank' rel='nofollow'>2013年《北京市医疗机构药品集中采购手册》</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="2308033"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射液</td>                            <td>1.5ml:60mg(专用溶媒，乙醇)</td>                            <td>1</td>                            <td>支</td>                            <td>1105.24</td>                            <td>普通GMP</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td></td>                            <td>湖北</td>                            <td>2013-04-28</td>                            <td>非基药</td>                            <td><a class='cl-blue' href="http://www.baiduyy.com/yaojia/xiangxi/jia_detail_2967.htm" target='_blank' rel='nofollow'>关于公布2013年二级以上医疗机构集中采购挂网目录及相关事项的通知</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="2302035"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射液</td>                            <td>2ml:80mg</td>                            <td>1</td>                            <td>支</td>                            <td>1187.43</td>                            <td>首仿</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td></td>                            <td>湖北</td>                            <td>2013-04-28</td>                            <td>非基药</td>                            <td><a class='cl-blue' href="http://www.baiduyy.com/yaojia/xiangxi/jia_detail_2967.htm" target='_blank' rel='nofollow'>关于公布2013年二级以上医疗机构集中采购挂网目录及相关事项的通知</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="2302034"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射液</td>                            <td>0.5ml:20mg</td>                            <td>1</td>                            <td>支</td>                            <td>408.83</td>                            <td>首仿</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td></td>                            <td>湖北</td>                            <td>2013-04-28</td>                            <td>非基药</td>                            <td><a class='cl-blue' href="http://www.baiduyy.com/yaojia/xiangxi/jia_detail_2967.htm" target='_blank' rel='nofollow'>关于公布2013年二级以上医疗机构集中采购挂网目录及相关事项的通知</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="1826096"/></td>
+                                        <td><span class="cl-red">多西他赛</span></td>                            <td>艾素</td>                            <td>注射液</td>                            <td>2ml:80mg/支</td>                            <td>1</td>                            <td>支</td>                            <td>1514.69</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>天津医药集团太平医药有限公司</td>                            <td>天津</td>                            <td>2013-03-15</td>                            <td></td>                            <td>关于公示天津市2009年度医疗机构药品集中采购评审结果的通知
+</td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="1826090"/></td>
+                                        <td><span class="cl-red">多西他赛</span></td>                            <td>艾素</td>                            <td>注射液</td>                            <td>1.5ml:60mg/瓶</td>                            <td>1</td>                            <td>瓶</td>                            <td>1269</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>天津医药集团太平医药有限公司</td>                            <td>天津</td>                            <td>2013-03-15</td>                            <td></td>                            <td>关于公示天津市2009年度医疗机构药品集中采购评审结果的通知
+</td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="1826089"/></td>
+                                        <td><span class="cl-red">多西他赛</span></td>                            <td>艾素</td>                            <td>注射液</td>                            <td>0.5ml:20mg/支</td>                            <td>1</td>                            <td>支</td>                            <td>536</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>天津医药集团太平医药有限公司</td>                            <td>天津</td>                            <td>2013-03-15</td>                            <td></td>                            <td>关于公示天津市2009年度医疗机构药品集中采购评审结果的通知
+</td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="1686829"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射剂</td>                            <td>1.5ml:60mg</td>                            <td>1</td>                            <td>支</td>                            <td>974.57</td>                            <td>GMP国产</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td></td>                            <td>四川</td>                            <td>2013-03-11</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.ynyyzb.com.cn/HomePage/ContentShow.aspx?pid=DF-CD-41-4C-C0-05-12-96&tid=ggtz" target='_blank' rel='nofollow'></a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="1691101"/></td>
+                                        <td>注射用<span class="cl-red">多西他赛</span></td>                            <td>艾素</td>                            <td>注射剂</td>                            <td>20mg</td>                            <td>1</td>                            <td>支</td>                            <td>420.3</td>                            <td>GMP国产</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td></td>                            <td>四川</td>                            <td>2013-03-11</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.ynyyzb.com.cn/HomePage/ContentShow.aspx?pid=DF-CD-41-4C-C0-05-12-96&tid=ggtz" target='_blank' rel='nofollow'></a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=注射用多西他赛" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="1667877"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射液</td>                            <td>2ml:80mg</td>                            <td>1</td>                            <td>支/支</td>                            <td>1187.43</td>                            <td>首仿</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td></td>                            <td>湖北</td>                            <td>2013-01-16</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.ynyyzb.com.cn/HomePage/ContentShow.aspx?pid=DF-CD-41-4C-C0-05-12-96&tid=ggtz" target='_blank' rel='nofollow'></a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="2547707"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射液</td>                            <td>1.5ml:60m g</td>                            <td>1</td>                            <td>盒</td>                            <td>1170</td>                            <td>西药组合物专利
+、天然提取物专 利、微生物及其</td>                            <td>江苏恒瑞医药股份 有限公司</td>                            <td>青海省医药有限 责任公司新特药 采购供应站</td>                            <td>青海</td>                            <td>2012-08-02</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.qhwjw.gov.cn/ywgl/yaoxiec/tzgg/2012/08/02/1343898473821.html" target='_blank' rel='nofollow'>青药采办〔2012〕8号</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="2547703"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射液</td>                            <td>80mg:2ml</td>                            <td>1</td>                            <td>盒</td>                            <td>1309.75</td>                            <td>工艺专利药品</td>                            <td>江苏恒瑞医药股份 有限公司</td>                            <td>青海省医药有限 责任公司新特药 采购供应站</td>                            <td>青海</td>                            <td>2012-08-02</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.qhwjw.gov.cn/ywgl/yaoxiec/tzgg/2012/08/02/1343898473821.html" target='_blank' rel='nofollow'>青药采办〔2012〕8号</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="2547702"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射液</td>                            <td>20mg:0.5 ml</td>                            <td>1</td>                            <td>盒</td>                            <td>453.2</td>                            <td>工艺专利药品</td>                            <td>江苏恒瑞医药股份 有限公司</td>                            <td>青海省医药有限 责任公司新特药 采购供应站</td>                            <td>青海</td>                            <td>2012-08-02</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.qhwjw.gov.cn/ywgl/yaoxiec/tzgg/2012/08/02/1343898473821.html" target='_blank' rel='nofollow'>青药采办〔2012〕8号</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="1963353"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td><50ml注射液</td>                            <td>多西他赛注射液：0.5ml:20mg，多西他赛注射液溶剂：1.5ml</td>                            <td>1</td>                            <td>瓶</td>                            <td>410</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>陕西</td>                            <td>2012-06-29</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.sxsyxcg.cn/HomePage/ShowDetail.aspx?InfoId=579" target='_blank' rel='nofollow'>2011年陕西省县级及以上医疗机构药品集中采购入围品种公告（一）</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="1963441"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td><50ml注射液</td>                            <td>多西他赛注射液：2.0ml:80mg，多西他赛注射液溶剂：6.0ml</td>                            <td>1</td>                            <td>瓶</td>                            <td>1180</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>陕西</td>                            <td>2012-06-29</td>                            <td></td>                            <td><a class='cl-blue' href="http://www.sxsyxcg.cn/HomePage/ShowDetail.aspx?InfoId=579" target='_blank' rel='nofollow'>2011年陕西省县级及以上医疗机构药品集中采购入围品种公告（一）</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="2434584"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射液</td>                            <td>1.5ml:60mg</td>                            <td>1</td>                            <td>支</td>                            <td>1110</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>甘肃</td>                            <td>2012-05-02</td>                            <td></td>                            <td><a class='cl-blue' href="http://202.100.81.117/ggtz/2013/04/07/1365346743898.html" target='_blank' rel='nofollow'>甘药采函﹝2012﹞6号</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="2434087"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射液</td>                            <td>0.5ml:20mg</td>                            <td>1</td>                            <td>支</td>                            <td>375</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>甘肃</td>                            <td>2012-05-02</td>                            <td></td>                            <td><a class='cl-blue' href="http://202.100.81.117/ggtz/2013/04/07/1365346743898.html" target='_blank' rel='nofollow'>甘药采函﹝2012﹞6号</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr><tr>
+            <td><input type='checkbox' name='id[]' value="2436489"/></td>
+                                        <td><span class="cl-red">多西他赛</span>注射液</td>                            <td></td>                            <td>注射液</td>                            <td>1.5ml:60mg</td>                            <td>1</td>                            <td>支</td>                            <td>1110</td>                            <td></td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>江苏恒瑞医药股份有限公司</td>                            <td>甘肃</td>                            <td>2012-04-11</td>                            <td></td>                            <td><a class='cl-blue' href="http://202.100.81.117/ggtz/2013/04/07/1365346374676.html" target='_blank' rel='nofollow'>关于公布2011-2012年度甘肃省非基药集中采购中标结果的通知</a></td>                            <td><a class="cl-blue" href="http://35yao.com/invest/list.php?keys=多西他赛注射液" target="_blank">查看</a></td>          </tr>      </tbody>
+    </table>
+     </form>
+    <!-- 分页 -->
+    <div class="tr offset-top" data-widget="dbPagination" data-page="5" data-total="170" data-size="20" data-href="/yaopinzhongbiao?name=%E5%A4%9A%E8%A5%BF%E4%BB%96%E8%B5%9B&zb_shengchanqiye=%E6%81%92%E7%91%9E%E5%8C%BB%E8%8D%AF&first=%E5%85%A8%E9%83%A8&pageSize=20&p=<%=page%>" data-max-page="75"></div>
+
+           
+  </div>
+  <footer id="footer">
+    <div class="wrapper">
+      <div class="clearfix">
+        <div class="fl">
+          <a target=&quot;_blank&quot; href="http://db.yaozh.com/vip">VIP试用</a><a target=&quot;_blank&quot; href="http://db.yaozh.com/app">APP下载</a><a target=&quot;_blank&quot; href="/other/custom?source=db&amp;position=bottom_nav">客服中心</a><a target=&quot;_blank&quot; href="/other/links">友情链接</a><a target=&quot;_blank&quot; href="/other/faq">常见问题</a><a  href="http://db.yaozh.com/Zhuanti/zhuanti_20160721">数据可视化</a><a target=&quot;_blank&quot; href="http://db.yaozh.com/bigdata/yzxpj?source=db&amp;name=index_foot">大数据可视化分析平台</a><a target=&quot;_blank&quot; href="http://db.yaozh.com/other/sitemap">网站地图</a><a target=&quot;_blank&quot; href="http://www.yaozh.com/ued?source=db&amp;name=footer">用户体验提升计划</a>        </div>
+        <div class="fr">
+          <i class="fa"></i>
+          <b class="fs16 mr20">400-678-0778</b>
+           <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010802001068" style="display:inline-block;text-decoration:none;height:17px;line-height:17px;"><img src="/Public/home/image/netsafe.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;">渝公网安备 50010802001068号</p>
+          </a>
+        </div>
+      </div>
+      <div class="clearfix">
+        <div class="fl mh">
+                            </div>
+        <div class="fr">康洲大数据  Copyright © 2009-2017 药智网YAOZH.COM All Rights Reserved.</div>
+      </div>
+    </div>
+        <script> var _hmt = _hmt || []; (function() {   var hm = document.createElement("script");   hm.src = "//hm.baidu.com/hm.js?65968db3ac154c3089d7f9a4cbb98c94";   var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(hm, s); })(); </script>
+<script type='text/javascript'>
+    (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = '//static.meiqia.com/dist/meiqia.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 10555);
+_MEIQIA('withoutBtn');
+_MEIQIA('fallback', 1);
+_MEIQIA('assign', {
+        groupToken: '2a9b1e9c88bf5fc202a5bc1ae6cd22ef'
+    });
+</script>    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//yznews.oss-cn-hangzhou.aliyuncs.com/system_1/analytics.js','ga');
+      ga('create', 'UA-73321472-1', {'userId': '385042'});
+      ga('set', 'dimension1', '385042');
+      ga('set', 'dimension2', 'gjpharm');
+      ga('set', 'dimension3', '营销特级');
+      ga('send', 'pageview');
+    </script>
+    <script type="text/javascript">
+      /*解决内容少导致底部上浮问题，其中16px为main的margin-bottom;*/
+      var height = document.body.clientHeight-window.innerHeight;
+      if (height<0) {
+        var footer=document.getElementById("footer");
+        getStyle(footer,'marginTop');
+        function getStyle(obj,attr){
+          var stylemt = obj.style.marginTop; 
+          if(stylemt){ 
+          obj.style.marginTop=-height+parseInt(stylemt)+16+"px";
+          }else{ 
+            var marTop = document.defaultView.getComputedStyle(obj,null)[attr];
+            marTop = parseInt(marTop);
+            if (marTop) {
+              footer.style.marginTop=-height+marTop+16+"px";
+            }else{
+              footer.style.marginTop=-height+16+"px";
+            }
+
+          } 
+        } 
+      } 
+    </script>
+  </footer>
+  <script>
+  (function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https'){
+  bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+</body>
+</html>
