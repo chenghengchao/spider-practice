@@ -21,7 +21,7 @@ headers = {
     'Accept-Encoding':'gzip, deflate, sdch, br',
     'Accept-Language':'zh-CN,zh;q=0.8',
     'Connection':'keep-alive',
-    'Cookie':'PHPSESSID=169t3qjps2uadhdlu7q6nrl020; MEIQIA_EXTRA_TRACK_ID=0070956c107b11e7a7c00246fd076266; WAF_SESSION_ID=feae85155c9e87f4c0f38567b47c1046; mylogin=1; think_language=zh-CN; WAF_SESSION_ID=ed39d9e7e4d6f7099735ceb7b1259056; UtzD_f52b_saltkey=Vx4l4ZLz; UtzD_f52b_lastvisit=1490607937; _gat=1; yaozh_logintime=1490611550; yaozh_user=385042%09gjpharm; yaozh_userId=385042; db_w_auth=371681%09gjpharm; UtzD_f52b_lastact=1490611551%09uc.php%09; UtzD_f52b_auth=3b58cqNFHw5ifWo5Ff3LQPJiZyOs%2FoMKMrbD2azM61iGs7GHeXltnyPuwyrtivcLUCCf6D2CkKE3wCnFf%2B9gdNZRirE; _ga=GA1.2.714695514.1490350613; ad_index_dialog=1; _ga=GA1.3.714695514.1490350613; Hm_lvt_65968db3ac154c3089d7f9a4cbb98c94=1490350613; Hm_lpvt_65968db3ac154c3089d7f9a4cbb98c94=1490611584; zbpreid=',
+    'Cookie':'PHPSESSID=8t799n8di7na9h0s749nir9gm7; MEIQIA_EXTRA_TRACK_ID=9a490538107711e783c502eac6ee35ee; zbpreid=; WAF_SESSION_ID=2d4b91212698faa28df3e513186465ef; think_language=zh-CN; _gat=1; _ga=GA1.2.155179276.1490349152; yaozh_logintime=1490627985; yaozh_user=385042%09gjpharm; yaozh_userId=385042; db_w_auth=371681%09gjpharm; UtzD_f52b_saltkey=qjqeILoi; UtzD_f52b_lastvisit=1490624386; UtzD_f52b_lastact=1490627986%09uc.php%09; UtzD_f52b_auth=c15cqJUzTGM2%2FOobymn5TXHzISsDzvH%2BdWGhGzV%2FnulUTrpHrpw9ocRupuXeT89Iqrf4IzFBghPIGTjgpdGBJ%2BTQikU; _ga=GA1.3.155179276.1490349152; Hm_lvt_65968db3ac154c3089d7f9a4cbb98c94=1490349152; Hm_lpvt_65968db3ac154c3089d7f9a4cbb98c94=1490627994',
     'Host':'db.yaozh.com',
     'Referer':'https://db.yaozh.com/yaopinzhongbiao',
     'Upgrade-Insecure-Requests':'1',
@@ -42,6 +42,12 @@ def get_url():
 
     db = get_db()
     cursor = db.cursor()
+    sql = "select * from url"
+    cursor.execute(sql)
+    rows = cursor.fetchall()
+    if len(rows) > 0:
+        return
+    print("get url")
     for d in data:
         zb_shengchanqiye = d["com"]
         yname = d["pro"]
@@ -70,166 +76,158 @@ def get_url():
 def get_data():
     db = get_db()
     cursor = db.cursor()
-    sql = "select url from url where times=0"
-    cursor.execute(sql)
+    start_sql = "select url from url where times = '0'"
+    cursor.execute(start_sql)
     data = cursor.fetchall()
 
-    for u in data:
-        flag = False
-        response = requests.get(u[0], headers=headers)
-        tree = html.fromstring(response.text)
-        #name_list=[('general_name',2)]
-        #item=dict()
-        tr_len=len(tree.xpath('//tbody/tr'))
-        for tr in tree.xpath('//tbody/tr'):
-            general_name = name = type = scale = rate = danwei = price = quality = pro_com = tou_com = province = date = beizhu = file = file_link = product = ''
-            try:
-                general_name = tr.xpath('td[2]/span/text()')[0]
-            except IndexError as e:
-                print(e)
-            # print("error")
-            #     continue
-            try:
-                name = tr.xpath('td[3]/text()')[0]
-            except IndexError as e:
-                print(e)
+    while len(data) != 0:
+
+        for u in data:
+            flag = False
+            response = requests.get(u[0], headers=headers)
+            tree = html.fromstring(response.text)
+            #name_list=[('general_name',2)]
+            #item=dict()
+            tr_len=len(tree.xpath('//tbody/tr'))
+            for tr in tree.xpath('//tbody/tr'):
+                general_name = name = type = scale = rate = danwei = price = quality = pro_com = tou_com = province = date = beizhu = file = file_link = product = ''
+                try:
+                    general_name = tr.xpath('td[2]/span/text()')[0]
+                except IndexError as e:
+                    print(e)
                 # print("error")
-                # continue
-            try:
-                type = tr.xpath('td[4]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                scale = tr.xpath('td[5]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                rate = tr.xpath('td[6]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                danwei = tr.xpath('td[7]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                price = tr.xpath('td[8]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                quality = tr.xpath('td[9]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                pro_com = tr.xpath('td[10]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                tou_com = tr.xpath('td[11]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                province = tr.xpath('td[12]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                date = tr.xpath('td[13]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                beizhu = tr.xpath('td[14]/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                file = tr.xpath('td[15]/a/text()')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                file_link = tr.xpath('td[15]/a/@href')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            try:
-                product = tr.xpath('td[16]/a/@href')[0]
-            except IndexError as e:
-                print(e)
-                # continue
-            print(general_name, name, type, scale, rate, danwei, price, quality, pro_com, tou_com, province, date, beizhu, file, file_link, product)
+                #     continue
+                try:
+                    name = tr.xpath('td[3]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # print("error")
+                    # continue
+                try:
+                    type = tr.xpath('td[4]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    scale = tr.xpath('td[5]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    rate = tr.xpath('td[6]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    danwei = tr.xpath('td[7]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    price = tr.xpath('td[8]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    quality = tr.xpath('td[9]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    pro_com = tr.xpath('td[10]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    tou_com = tr.xpath('td[11]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    province = tr.xpath('td[12]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    date = tr.xpath('td[13]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    beizhu = tr.xpath('td[14]/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    file = tr.xpath('td[15]/a/text()')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    file_link = tr.xpath('td[15]/a/@href')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                try:
+                    product = tr.xpath('td[16]/a/@href')[0]
+                except IndexError as e:
+                    print(e)
+                    # continue
+                print(general_name, name, type, scale, rate, danwei, price, quality, pro_com, tou_com, province, date, beizhu, file, file_link, product)
 
-            # except IndexError as e:
-            #     print(e)
-            #     # print("error")
-            #     continue
+                url = u[0]
+                pattern = re.compile(r".*name=(.*)&zb_shengchanqiye=(.*)&first")
+                match = re.match(pattern, url).groups()
+                kw1 = match[0]
+                kw2 = match[1]
 
+                sql = "insert into yzdata(kw1, kw2, general_name, name, type, scale, rate, danwei, price, quality, pro_com, tou_com, " \
+                  "province, date, beizhu, file, filelink, product, url) \
+                  values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
-
-
-
-
-            # try:
-            #     general_name = tr.xpath('td[2]/span/text()')[0]
-            #     name = tr.xpath('td[3]/text()')[0]
-            #     type = tr.xpath('td[4]/text()')[0]
-            #     scale = tr.xpath('td[5]/text()')[0]
-            #     rate = tr.xpath('td[6]/text()')[0]
-            #     danwei = tr.xpath('td[7]/text()')[0]
-            #     price = tr.xpath('td[8]/text()')[0]
-            #     quality = tr.xpath('td[9]/text()')[0]
-            #     pro_com = tr.xpath('td[10]/text()')[0]
-            #     tou_com = tr.xpath('td[11]/text()')[0]
-            #     province = tr.xpath('td[12]/text()')[0]
-            #     date = tr.xpath('td[13]/text()')[0]
-            #     beizhu = tr.xpath('td[14]/text()')[0]
-            #     file = tr.xpath('td[15]/a/text()')[0]
-            #     file_link = tr.xpath('td[15]/a/@href')[0]
-            #     product = tr.xpath('td[16]/a/@href')[0]
-            #     print(general_name, name, type, scale, rate, danwei, price, quality, pro_com, tou_com, province, date, beizhu, file, file_link, product)
-            #
-            # except IndexError as e:
-            #     print(e)
-                # print("error")
-                # continue
-            url = u[0]
-            pattern = re.compile(r".*name=(.*)&zb_shengchanqiye=(.*)&first")
-            match = re.match(pattern, url).groups()
-            kw1 = match[0]
-            kw2 = match[1]
-
-            sql = "insert into yzdata(kw1, kw2, general_name, name, type, scale, rate, danwei, price, quality, pro_com, tou_com, " \
-              "province, date, beizhu, file, filelink, product, url) \
-              values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-
-            params = (kw1, kw2, general_name, name, type, scale, rate, danwei, price, quality, pro_com, tou_com, province, date, beizhu, file, file_link, product, url)
-            # print(params)
-            try:
-                cursor.execute(sql, params)
+                params = (kw1, kw2, general_name, name, type, scale, rate, danwei, price, quality, pro_com, tou_com, province, date, beizhu, file, file_link, product, url)
+                # print(params)
+                try:
+                    cursor.execute(sql, params)
+                    db.commit()
+                    flag = True
+                except Exception as e:
+                    print(e)
+                    continue
+            print("one link over")
+            if flag:
+                new_sql = "update url set times = '1' where url = '{0}'".format(u[0])
+                cursor.execute(new_sql)
                 db.commit()
-                flag = True
-            except:
-                print("db error")
-                continue
-        print("one link over")
-        if flag:
-            new_sql = "update url set times = '1' where url = '{0}'".format(u[0])
-            cursor.execute(new_sql)
-            db.commit()
+        cursor.execute(start_sql)
+        data = cursor.fetchall()
     db.close()
 
 
+def truncate_table(table):
+    db = get_db()
+    cursor = db.cursor()
+    sql = "truncate table {0}".format(table)
+    cursor.execute(sql)
+    db.commit()
+    db.close()
+
+
+def test_sql():
+    db = get_db()
+    cursor = db.cursor()
+    start_sql = "select url from url where times = '0'"
+    cursor.execute(start_sql)
+    data = cursor.fetchall()
+    print(data)
+
+
 if __name__ == '__main__':
+    truncate_table('url')
+    truncate_table('yzdata')
     get_url()
     get_data()
+    # test_sql()
 
 
 
