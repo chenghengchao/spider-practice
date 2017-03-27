@@ -21,7 +21,7 @@ headers = {
     'Accept-Encoding':'gzip, deflate, sdch, br',
     'Accept-Language':'zh-CN,zh;q=0.8',
     'Connection':'keep-alive',
-    'Cookie':'PHPSESSID=169t3qjps2uadhdlu7q6nrl020; MEIQIA_EXTRA_TRACK_ID=0070956c107b11e7a7c00246fd076266; WAF_SESSION_ID=f2e50c98c8ba11854406efcb42a09786; mylogin=1; UtzD_f52b_saltkey=oWr2AyrG; UtzD_f52b_lastvisit=1490347056; UtzD_f52b_ulastactivity=1489737935%7C0; UtzD_f52b_creditnotice=0D0D2D0D0D0D0D0D0D371681; UtzD_f52b_creditbase=0D0D431D0D0D0D0D0D0; UtzD_f52b_creditrule=%E6%AF%8F%E5%A4%A9%E7%99%BB%E5%BD%95; _gat=1; think_language=zh-CN; ad_index_dialog=1; WAF_PROOF_OF_WORK_CHALLENGE=136783; _ga=GA1.2.714695514.1490350613; yaozh_logintime=1490526844; yaozh_user=385042%09gjpharm; yaozh_userId=385042; db_w_auth=371681%09gjpharm; UtzD_f52b_lastact=1490526844%09uc.php%09; UtzD_f52b_auth=6f30zpYWAohfIllhoyS3jbgDTyB7mF%2BLgKrVB6r0b0QQw6WsrAgdfov1QWrm%2FilSjxTDj%2BpwNHdD9Ca20Ziuu%2B1iB84; _ga=GA1.3.714695514.1490350613; Hm_lvt_65968db3ac154c3089d7f9a4cbb98c94=1490350613; Hm_lpvt_65968db3ac154c3089d7f9a4cbb98c94=1490526862; WAF_SESSION_ID=a2913be6e82c7e98a88b48bf7b04d271; zbpreid=',
+    'Cookie':'PHPSESSID=169t3qjps2uadhdlu7q6nrl020; MEIQIA_EXTRA_TRACK_ID=0070956c107b11e7a7c00246fd076266; WAF_SESSION_ID=feae85155c9e87f4c0f38567b47c1046; mylogin=1; think_language=zh-CN; WAF_SESSION_ID=ed39d9e7e4d6f7099735ceb7b1259056; UtzD_f52b_saltkey=Vx4l4ZLz; UtzD_f52b_lastvisit=1490607937; _gat=1; yaozh_logintime=1490611550; yaozh_user=385042%09gjpharm; yaozh_userId=385042; db_w_auth=371681%09gjpharm; UtzD_f52b_lastact=1490611551%09uc.php%09; UtzD_f52b_auth=3b58cqNFHw5ifWo5Ff3LQPJiZyOs%2FoMKMrbD2azM61iGs7GHeXltnyPuwyrtivcLUCCf6D2CkKE3wCnFf%2B9gdNZRirE; _ga=GA1.2.714695514.1490350613; ad_index_dialog=1; _ga=GA1.3.714695514.1490350613; Hm_lvt_65968db3ac154c3089d7f9a4cbb98c94=1490350613; Hm_lpvt_65968db3ac154c3089d7f9a4cbb98c94=1490611584; zbpreid=',
     'Host':'db.yaozh.com',
     'Referer':'https://db.yaozh.com/yaopinzhongbiao',
     'Upgrade-Insecure-Requests':'1',
@@ -70,15 +70,17 @@ def get_url():
 def get_data():
     db = get_db()
     cursor = db.cursor()
-    sql = "select url from url where times = '0'"
+    sql = "select url from url where times=0"
     cursor.execute(sql)
     data = cursor.fetchall()
-    flag = False
-    for u in data:
 
+    for u in data:
+        flag = False
         response = requests.get(u[0], headers=headers)
         tree = html.fromstring(response.text)
-
+        #name_list=[('general_name',2)]
+        #item=dict()
+        tr_len=len(tree.xpath('//tbody/tr'))
         for tr in tree.xpath('//tbody/tr'):
             general_name = name = type = scale = rate = danwei = price = quality = pro_com = tou_com = province = date = beizhu = file = file_link = product = ''
             try:
