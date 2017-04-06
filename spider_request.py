@@ -11,17 +11,37 @@ first = '全部'
 p = '1'
 
 cookies = {'PHPSESSID=169t3qjps2uadhdlu7q6nrl020; MEIQIA_EXTRA_TRACK_ID=0070956c107b11e7a7c00246fd076266; WAF_SESSION_ID=f2e50c98c8ba11854406efcb42a09786; mylogin=1; UtzD_f52b_saltkey=oWr2AyrG; UtzD_f52b_lastvisit=1490347056; UtzD_f52b_ulastactivity=1489737935%7C0; UtzD_f52b_creditnotice=0D0D2D0D0D0D0D0D0D371681; UtzD_f52b_creditbase=0D0D431D0D0D0D0D0D0; UtzD_f52b_creditrule=%E6%AF%8F%E5%A4%A9%E7%99%BB%E5%BD%95; _gat=1; think_language=zh-CN; ad_index_dialog=1; _ga=GA1.2.714695514.1490350613; yaozh_logintime=1490519522; yaozh_user=385042%09gjpharm; yaozh_userId=385042; db_w_auth=371681%09gjpharm; UtzD_f52b_lastact=1490519524%09uc.php%09; UtzD_f52b_auth=dfc0e77E4QPMxa3wJlU%2Bme25%2BoK4ddYyXNEWDqZrqghB1z%2FI%2FeBbzv%2BjJ3tjistgw1d2YVH1iwxCjirv30tMomkXAk4; zbpreid=; _ga=GA1.3.714695514.1490350613; Hm_lvt_65968db3ac154c3089d7f9a4cbb98c94=1490350613; Hm_lpvt_65968db3ac154c3089d7f9a4cbb98c94=1490523034; WAF_SESSION_ID=f2f4948b6c718060587d3b3f87106232'}
+# 测试数据已经ok
+# data = [
+#     {"com": "恒瑞医药", "pro": "多西他赛"},# 170条
+#     {"com": "恒瑞医药", "pro": "奥沙利铂"},# 194条
+#     {"com": "恒瑞医药", "pro": "厄贝沙坦"},# 104条
+# ]
 data = [
-    {"com": "恒瑞医药", "pro": "多西他赛"},# 170条
-    {"com": "恒瑞医药", "pro": "奥沙利铂"},# 194条
-    {"com": "恒瑞医药", "pro": "厄贝沙坦"},# 104条
+    {"com":"恒瑞医药","pro":"伊立替康"},
+    {"com":"恒瑞医药","pro":"来曲唑"},
+    {"com":"恒瑞医药","pro":"亚叶酸钙"},
+    {"com":"恒瑞医药","pro":"七氟烷"},
+    {"com":"恒瑞医药","pro":"碘佛醇"},
+    {"com":"恒瑞医药","pro":"右美托咪定"},
+    {"com":"恒瑞医药","pro":"苯磺顺阿曲库铵"},
+    {"com":"恩华药业","pro":"咪达唑仑"},
+    {"com":"恩华药业","pro":"瑞芬太尼"},
+    {"com":"恩华药业","pro":"依托咪酯"},
+    {"com":"恩华药业","pro":"丙泊酚"},
+    {"com":"恩华药业","pro":"右美托咪定"},
+    {"com":"恩华药业","pro":"利培酮"},
+    {"com":"恩华药业","pro":"齐拉西酮"},
+    {"com":"恩华药业","pro":"阿立哌唑"},
+    {"com":"恩华药业","pro":"丁螺环酮"},
+    {"com":"恩华药业","pro":"度洛西汀"},
 ]
 headers = {
     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Accept-Encoding':'gzip, deflate, sdch, br',
     'Accept-Language':'zh-CN,zh;q=0.8',
     'Connection':'keep-alive',
-    'Cookie':'PHPSESSID=8t799n8di7na9h0s749nir9gm7; MEIQIA_EXTRA_TRACK_ID=9a490538107711e783c502eac6ee35ee; zbpreid=; WAF_SESSION_ID=2d4b91212698faa28df3e513186465ef; think_language=zh-CN; _gat=1; _ga=GA1.2.155179276.1490349152; yaozh_logintime=1490627985; yaozh_user=385042%09gjpharm; yaozh_userId=385042; db_w_auth=371681%09gjpharm; UtzD_f52b_saltkey=qjqeILoi; UtzD_f52b_lastvisit=1490624386; UtzD_f52b_lastact=1490627986%09uc.php%09; UtzD_f52b_auth=c15cqJUzTGM2%2FOobymn5TXHzISsDzvH%2BdWGhGzV%2FnulUTrpHrpw9ocRupuXeT89Iqrf4IzFBghPIGTjgpdGBJ%2BTQikU; _ga=GA1.3.155179276.1490349152; Hm_lvt_65968db3ac154c3089d7f9a4cbb98c94=1490349152; Hm_lpvt_65968db3ac154c3089d7f9a4cbb98c94=1490627994',
+    'Cookie':'MEIQIA_EXTRA_TRACK_ID=9a490538107711e783c502eac6ee35ee; UtzD_f52b_saltkey=qjqeILoi; UtzD_f52b_lastvisit=1490624386; think_language=zh-CN; PHPSESSID=roaqdtiuvjsm27cv3r37kq7qr1; UtzD_f52b_ulastactivity=1489737935%7C0; WAF_SESSION_ID=fae1ecbc65852d4541ce8343c929120c; _gat=1; ad_index_dialog=1; _ga=GA1.2.155179276.1490349152; yaozh_logintime=1491470600; yaozh_user=385042%09gjpharm; yaozh_userId=385042; db_w_auth=371681%09gjpharm; UtzD_f52b_lastact=1491470600%09uc.php%09; UtzD_f52b_auth=ef63UdLhp%2FxtbN8TQ02iUFRtmA5Df%2BmPnJzb9y1E3IroRy4lz6RXPFcWVY%2FPiQVHZMbVJEuIBF7FmfUW7Akg8rZCnjo; _ga=GA1.3.155179276.1490349152; Hm_lvt_65968db3ac154c3089d7f9a4cbb98c94=1490349152,1491469374; Hm_lpvt_65968db3ac154c3089d7f9a4cbb98c94=1491470740; zbpreid=',
     'Host':'db.yaozh.com',
     'Referer':'https://db.yaozh.com/yaopinzhongbiao',
     'Upgrade-Insecure-Requests':'1',
@@ -59,6 +79,7 @@ def get_url():
         try:
             total = tree.xpath('//div[@class="tr offset-top"]/@data-total')[0]
         except Exception as e:
+            print yname, zb_shengchanqiye + "have no result."
             return
         print(total)
         page = int(int(total) / 20) + 1
@@ -243,12 +264,12 @@ def get_ip():
     print(r.text)
 
 if __name__ == '__main__':
-    # truncate_table('url')
-    # truncate_table('yzdata')
-    # get_url()
-    # get_data()
+    truncate_table('url')
+    truncate_table('yzdata')
+    get_url()
+    get_data()
     # test_sql()
-    get_ip()
+    # get_ip()
 
 
 
