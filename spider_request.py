@@ -56,7 +56,10 @@ def get_url():
         # print(response.text)
         tree = html.fromstring(response.text)
         # print(tree)
-        total = tree.xpath('//div[@class="tr offset-top"]/@data-total')[0]
+        try:
+            total = tree.xpath('//div[@class="tr offset-top"]/@data-total')[0]
+        except Exception as e:
+            return
         print(total)
         page = int(int(total) / 20) + 1
         print(page)
