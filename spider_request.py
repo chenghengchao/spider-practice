@@ -4,6 +4,7 @@ from lxml import html
 import re
 import pymysql
 import os
+import time
 
 
 urls = 'https://db.yaozh.com/yaopinzhongbiao?name={0}&zb_shengchanqiye={1}&first={2}&pageSize=20&p={3}'
@@ -25,16 +26,16 @@ data = [
     {"com":"恒瑞医药","pro":"碘佛醇"},
     {"com":"恒瑞医药","pro":"右美托咪定"},
     {"com":"恒瑞医药","pro":"苯磺顺阿曲库铵"},
-    {"com":"恩华药业","pro":"咪达唑仑"},
-    {"com":"恩华药业","pro":"瑞芬太尼"},
-    {"com":"恩华药业","pro":"依托咪酯"},
-    {"com":"恩华药业","pro":"丙泊酚"},
-    {"com":"恩华药业","pro":"右美托咪定"},
-    {"com":"恩华药业","pro":"利培酮"},
-    {"com":"恩华药业","pro":"齐拉西酮"},
-    {"com":"恩华药业","pro":"阿立哌唑"},
-    {"com":"恩华药业","pro":"丁螺环酮"},
-    {"com":"恩华药业","pro":"度洛西汀"},
+    # {"com":"恩华药业","pro":"咪达唑仑"},
+    # {"com":"恩华药业","pro":"瑞芬太尼"},
+    # {"com":"恩华药业","pro":"依托咪酯"},
+    # {"com":"恩华药业","pro":"丙泊酚"},
+    # {"com":"恩华药业","pro":"右美托咪定"},
+    # {"com":"恩华药业","pro":"利培酮"},
+    # {"com":"恩华药业","pro":"齐拉西酮"},
+    # {"com":"恩华药业","pro":"阿立哌唑"},
+    # {"com":"恩华药业","pro":"丁螺环酮"},
+    # {"com":"恩华药业","pro":"度洛西汀"},
 ]
 headers = {
     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -72,28 +73,31 @@ def get_url():
         zb_shengchanqiye = d["com"]
         yname = d["pro"]
         url = urls.format(yname, zb_shengchanqiye, first, p)
-        response = requests.get(url, headers=headers)
-        # print(response.text)
-        tree = html.fromstring(response.text)
-        # print(tree)
         try:
-            total = tree.xpath('//div[@class="tr offset-top"]/@data-total')[0]
-        except Exception as e:
-            print yname, zb_shengchanqiye + "have no result."
-            return
-        print(total)
-        page = int(int(total) / 20) + 1
-        print(page)
+            proxies = get_ip()
+            if proxies:
+                response = requests.get(url, headers=headers, proxies=proxies, allow_redirects=False)
+                tree = html.fromstring(response.text)
+                total = tree.xpath('//div[@class="tr offset-top"]/@data-total')[0]
+                print(total)
+                page = int(int(total) / 20) + 1
+                print(page)
 
-        for j in range(1, page + 1):
-            urltmp = re.subn('p=\d+', 'p=' + str(j), url)[0]
-            print(urltmp)
-            # utf8string = urltmp.encode('utf-8')
-            # print(utf8string)
-            sql = "insert into url(url, times) values('{0}', '0')".format(urltmp)
-            print(sql)
-            cursor.execute(sql)
-            db.commit()
+                for j in range(1, page + 1):
+                    urltmp = re.subn('p=\d+', 'p=' + str(j), url)[0]
+                    print(urltmp)
+                    # utf8string = urltmp.encode('utf-8')
+                    # print(utf8string)
+                    sql = "insert into url(url, times) values('{0}', '0')".format(urltmp)
+                    print(sql)
+                    cursor.execute(sql)
+                    db.commit()
+        except Exception as e:
+            print(yname, zb_shengchanqiye + "have no result.")
+            f = open('noresult.txt', 'w')
+            f.write(yname + zb_shengchanqiye + "have no result.")
+            f.close()
+            continue
     db.close()
 
 
@@ -108,10 +112,17 @@ def get_data():
 
         for u in data:
             flag = False
-            response = requests.get(u[0], headers=headers)
+            time.sleep(5)
+            try:
+                proxies = get_ip()
+
+                if proxies:
+                    response = requests.get(u[0], headers=headers, proxies=proxies, allow_redirects=False)
+            except Exception as e:
+                print(e)
+                continue
             tree = html.fromstring(response.text)
-            #name_list=[('general_name',2)]
-            #item=dict()
+
             tr_len=len(tree.xpath('//tbody/tr'))
             for tr in tree.xpath('//tbody/tr'):
                 general_name = name = type = scale = rate = danwei = price = quality = pro_com = tou_com = province = date = beizhu = file = file_link = product = ''
@@ -251,28 +262,39 @@ def get_ip():
     r = requests.get('http://127.0.0.1:8000')
     ip_ports = json.loads(r.text)
     print(ip_ports)
-    ip = ip_ports[0][0]
-    port = ip_ports[0][1]
-    proxies = {'https': 'https://%s:%s' % (ip, port), 'http': 'http://%s:%s' % (ip, port)}
+    # ip = ip_ports[0][0]
+    # port = ip_ports[0][1]
+    for address in ip_ports:
+        ip = address[0]
+        port = address[1]
+        proxies = {'https': 'https://%s:%s' % (ip, port), 'http': 'http://%s:%s' % (ip, port)}
     # proxies = {'https': 'https://%s:%s' % (ip, port)}
     # return proxies
     # if proxies:
     #     return proxies
     # return None
-    r = requests.get('https://db.yaozh.com/', proxies=proxies, allow_redirects=False)
-    r.encoding = 'utf-8'
-    print(r.text)
+    # print(proxies)
+    #     return proxies
+
+        try:
+            code = requests.get('https://db.yaozh.com/', proxies=proxies, allow_redirects=False).status_code
+            # r.encoding = 'utf-8'
+            print(code)
+
+        except Exception as e:
+            print(e)
+            continue
+        if code == 200:
+            print(proxies)
+            print("get right proxies")
+            return proxies
+        return None
+    return None
 
 if __name__ == '__main__':
     truncate_table('url')
     truncate_table('yzdata')
     get_url()
     get_data()
-    # test_sql()
+    # # test_sql()
     # get_ip()
-
-
-
-
-
-
