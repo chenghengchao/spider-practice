@@ -222,12 +222,30 @@ def test_sql():
     print(data)
 
 
+def get_ip():
+    import json
+    r = requests.get('http://127.0.0.1:8000')
+    ip_ports = json.loads(r.text)
+    print(ip_ports)
+    ip = ip_ports[0][0]
+    port = ip_ports[0][1]
+    proxies = {'https': 'https://%s:%s' % (ip, port), 'http': 'http://%s:%s' % (ip, port)}
+    # proxies = {'https': 'https://%s:%s' % (ip, port)}
+    # return proxies
+    # if proxies:
+    #     return proxies
+    # return None
+    r = requests.get('https://db.yaozh.com/', proxies=proxies, allow_redirects=False)
+    r.encoding = 'utf-8'
+    print(r.text)
+
 if __name__ == '__main__':
-    truncate_table('url')
-    truncate_table('yzdata')
-    get_url()
-    get_data()
+    # truncate_table('url')
+    # truncate_table('yzdata')
+    # get_url()
+    # get_data()
     # test_sql()
+    get_ip()
 
 
 
