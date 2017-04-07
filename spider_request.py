@@ -166,10 +166,11 @@ def get_data():
 
                 if proxies:
                     response = requests.get(u[0], headers=headers, proxies=proxies, allow_redirects=False)
+                tree = html.fromstring(response.text)
             except Exception as e:
                 print(e)
                 continue
-            tree = html.fromstring(response.text)
+
 
             tr_len=len(tree.xpath('//tbody/tr'))
             for tr in tree.xpath('//tbody/tr'):
