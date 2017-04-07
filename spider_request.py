@@ -194,7 +194,7 @@ def get_url():
                     db.commit()
         except Exception as e:
             print(yname, zb_shengchanqiye + "have no result.")
-            f = open('noresult.txt', 'w')
+            f = open('noresult.txt', 'a')
             f.write(yname + zb_shengchanqiye + "have no result.")
             f.close()
             continue
