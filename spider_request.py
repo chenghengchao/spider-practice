@@ -221,6 +221,7 @@ def get_data():
                 tree = html.fromstring(response.text)
             except Exception as e:
                 print(e)
+                print(u[0])
                 continue
 
 
@@ -393,9 +394,9 @@ def get_ip():
     return None
 
 if __name__ == '__main__':
-    truncate_table('url')
-    truncate_table('yzdata')
-    get_url()
+    # truncate_table('url')
+    # truncate_table('yzdata')
+    # get_url()
     get_data()
     # # test_sql()
     # get_ip()
