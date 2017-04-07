@@ -142,13 +142,12 @@ headers = {
     'Accept-Encoding':'gzip, deflate, sdch, br',
     'Accept-Language':'zh-CN,zh;q=0.8',
     'Connection':'keep-alive',
-    'Cookie':'MEIQIA_EXTRA_TRACK_ID=9a490538107711e783c502eac6ee35ee; PHPSESSID=roaqdtiuvjsm27cv3r37kq7qr1; ad_index_dialog=1; WAF_SESSION_ID=e234d235574a4cb4c9f42eace669139a; UtzD_f52b_saltkey=qjqeILoi; UtzD_f52b_lastvisit=1490624386; UtzD_f52b_ulastactivity=1489737935%7C0; think_language=zh-CN; WAF_SESSION_ID=c7efb349051700fcbd7f09b3d18ce6ae; _gat=1; yaozh_logintime=1491555775; yaozh_user=385042%09gjpharm; yaozh_userId=385042; db_w_auth=371681%09gjpharm; UtzD_f52b_lastact=1491555776%09uc.php%09; UtzD_f52b_auth=7eae%2FQK2eL65YnVYkFYO%2BiYays3MfExxqRT0%2FBkBb1UOLa2WsVSbtqrDRbfFbCbsKfx27F6kBNG9%2FbTmmX9hMtjz9QA; _ga=GA1.2.155179276.1490349152; _ga=GA1.3.155179276.1490349152; Hm_lvt_65968db3ac154c3089d7f9a4cbb98c94=1491469374%2C1491472995%2C1491473002%2C1491478579; Hm_lpvt_65968db3ac154c3089d7f9a4cbb98c94=1491555788; zbpreid=',
+    'Cookie':'MEIQIA_EXTRA_TRACK_ID=0070956c107b11e7a7c00246fd076266; PHPSESSID=ugmp68m7sapkupis94k648lrf1; ad_index_dialog=1; WAF_SESSION_ID=d0dd266e8c116a8a07fd70f72b2a7b7a; think_language=zh-CN; UtzD_f52b_saltkey=U2HR3HHx; UtzD_f52b_lastvisit=1491560891; WAF_SESSION_ID=4979de45699082aa58b7853719cbd2e0; UtzD_f52b_ulastactivity=1489737935%7C0; _gat=1; yaozh_logintime=1491567363; yaozh_user=385042%09gjpharm; yaozh_userId=385042; db_w_auth=371681%09gjpharm; UtzD_f52b_lastact=1491567364%09uc.php%09; UtzD_f52b_auth=02642mFxI8VsowF%2B0l%2F7%2FUXgb4rIZ1R0a2mtEvj2r%2BEHQpXbkzZ4EPAU%2FAs%2FT%2BoZQ7lEcqWc47ZTaAmkV98wPVCCT08; _ga=GA1.2.714695514.1490350613; _ga=GA1.3.714695514.1490350613; Hm_lvt_65968db3ac154c3089d7f9a4cbb98c94=1490350613%2C1491564485; Hm_lpvt_65968db3ac154c3089d7f9a4cbb98c94=1491567384; zbpreid=',
     'Host':'db.yaozh.com',
     'Referer':'https://db.yaozh.com/yaopinzhongbiao',
     'Upgrade-Insecure-Requests':'1',
-    'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.98 Safari/537.36',
+    'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',
 }
-
 def get_db():
     db = pymysql.connect(host='202.112.113.203',
                          user='sxw',
@@ -175,12 +174,15 @@ def get_url():
         url = urls.format(yname, zb_shengchanqiye, first, p)
         try:
             proxies = get_ip()
-            if proxies:
+            code = requests.get(url, headers=headers, proxies=proxies, allow_redirects=False).status_code
+            if proxies and code == 200:
                 response = requests.get(url, headers=headers, proxies=proxies, allow_redirects=False)
                 tree = html.fromstring(response.text)
                 total = tree.xpath('//div[@class="tr offset-top"]/@data-total')[0]
+                print("total:\n")
                 print(total)
                 page = int(int(total) / 20) + 1
+                print("page:\n")
                 print(page)
 
                 for j in range(1, page + 1):
@@ -215,10 +217,15 @@ def get_data():
             time.sleep(5)
             try:
                 proxies = get_ip()
-
-                if proxies:
+                # proxies = {'https': 'https://127.0.0.1:80', 'http': 'http://127.0.0.1:80'}
+                code = requests.get(u[0], headers=headers, proxies=proxies, allow_redirects=False).status_code
+                if proxies and code == 200:
+                    print("success!")
                     response = requests.get(u[0], headers=headers, proxies=proxies, allow_redirects=False)
-                tree = html.fromstring(response.text)
+                    print(response.text)
+                    tree = html.fromstring(response.text)
+                else:
+                    continue
             except Exception as e:
                 print(e)
                 print(u[0])
@@ -363,7 +370,7 @@ def get_ip():
     import json
     r = requests.get('http://127.0.0.1:8000')
     ip_ports = json.loads(r.text)
-    print(ip_ports)
+    # print(ip_ports)
     # ip = ip_ports[0][0]
     # port = ip_ports[0][1]
     for address in ip_ports:
@@ -379,16 +386,16 @@ def get_ip():
     #     return proxies
 
         try:
-            code = requests.get('https://db.yaozh.com/', proxies=proxies, allow_redirects=False).status_code
+            code = requests.get('https://db.yaozh.com/yaopinzhongbiao', proxies=proxies, allow_redirects=False).status_code
             # r.encoding = 'utf-8'
-            print(code)
+            # print(code)
 
         except Exception as e:
-            print(e)
+            # print(e)
             continue
         if code == 200:
             print(proxies)
-            print("get right proxies")
+            print("get proxies...")
             return proxies
         return None
     return None
